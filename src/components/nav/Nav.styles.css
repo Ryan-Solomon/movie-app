@@ -1,0 +1,61 @@
+.navbar {
+  color: var(--primary-color-grey);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color-grey);
+}
+
+.navbar .navbar__title {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  transition: all 0.2s ease;
+}
+
+.navbar .navbar__title a {
+  transition: all 0.2s ease;
+}
+
+.navbar .navbar__title h1 {
+  font-size: 2.5rem;
+  margin-right: 1.5rem;
+  margin-left: 1rem;
+  color: var(--primary-color-grey);
+}
+.navbar .navbar__title h1 span {
+  color: var(--primary-color-teal);
+}
+
+.navbar .navbar__links ul {
+  list-style: none;
+  display: flex;
+  padding: 1rem;
+}
+
+.navbar .navbar__links ul li {
+  margin: 0 2rem;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.navbar .navbar__links ul li:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.navbar .navbar__links ul a:hover {
+  color: var(--primary-color-teal);
+}
+
+.navbar__title:hover {
+  cursor: pointer;
+  color: var(--primary-color-teal);
+}
+
+.navbar__title:hover a {
+  color: var(--primary-color-teal);
+}

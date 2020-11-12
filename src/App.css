@@ -1,0 +1,29 @@
+/* Theme Colors */
+
+:root {
+  --primary-color-teal: #66fcf1;
+  --primary-color-grey: #c5c6c7;
+  --primary-color-grey-blue: #1f2833;
+  --primary-color-dark: #0b0c10;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  background-color: #2b4162;
+  background-image: linear-gradient(
+    315deg,
+    var(--primary-color-grey-blue) 0%,
+    var(--primary-color-dark) 60%
+  );
+}
