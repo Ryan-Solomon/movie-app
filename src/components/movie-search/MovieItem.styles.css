@@ -1,0 +1,47 @@
+.movie-item {
+  position: relative;
+  transition: 0.5s ease;
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.433);
+  margin-bottom: 3rem;
+}
+
+.movie-item img {
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #1f2833de;
+  color: var(--primary-color-teal);
+  opacity: 0;
+  overflow: hidden;
+  width: 0;
+  height: 100%;
+  transition: 0.5s ease;
+}
+
+.movie-item:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.movie-item:hover .overlay {
+  width: 100%;
+  opacity: 1;
+}
+
+.movie-details {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  text-align: center;
+}
+
+.movie-details h2 {
+  font-size: 1.5rem;
+}

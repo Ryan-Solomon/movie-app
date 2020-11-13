@@ -32,13 +32,14 @@ export const MovieSearchContextProvider: FC<ReactNode> = ({ children }) => {
       setIsLoading(true);
       try {
         const res = await fetch(
-          `https://movie-database-imdb-alternative.p.rapidapi.com/?s=${searchTerm}&page=1&r=json`,
+          `https://movie-database-imdb-alternative.p.rapidapi.com/?s=${
+            searchTerm.length > 0 ? searchTerm : 'avengers'
+          }&page=1&r=json`,
           requestConfig
         );
         const data = await res.json();
-        console.log(data);
         setError(null);
-        setMovies(data);
+        setMovies(data.Search);
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);

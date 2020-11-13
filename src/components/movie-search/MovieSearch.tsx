@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useMovieSearchContext } from '../../context/movieSearchContext';
 import './MovieSearch.styles.css';
+import useDebounce from './../../custom-hooks/hooks';
+import MovieItem from './MovieItem';
 
 const MovieSearch = () => {
-  const { searchTerm, setSearchTerm } = useMovieSearchContext()!;
+  const { setSearchTerm, movies, error, isLoading } = useMovieSearchContext()!;
+  const [input, setInput] = useState('');
+  const debouncedInput = useDebounce(input, 500);
+
+  useEffect(() => {
+    setSearchTerm(debouncedInput);
+  }, [debouncedInput]);
 
   return (
     <main className='search-container'>
@@ -13,8 +21,8 @@ const MovieSearch = () => {
         </div>
         <div className='searchbar__input'>
           <input
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
             type='text'
             placeholder='Search'
           />
@@ -23,7 +31,13 @@ const MovieSearch = () => {
       </section>
 
       <section className='search-container__gallery'>
-        <h1>Item</h1>
+        {isLoading ? (
+          <h1>Loading...</h1>
+        ) : (
+          movies.map((movie) => {
+            return <MovieItem key={movie.Title + movie.Year} movie={movie} />;
+          })
+        )}
       </section>
     </main>
   );

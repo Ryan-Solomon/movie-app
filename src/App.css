@@ -26,4 +26,5 @@ body {
     var(--primary-color-grey-blue) 0%,
     var(--primary-color-dark) 60%
   );
+  background-attachment: fixed;
 }
