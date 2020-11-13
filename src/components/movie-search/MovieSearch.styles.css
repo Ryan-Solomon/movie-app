@@ -41,3 +41,19 @@
   width: 70%;
   margin: auto;
 }
+
+.btn {
+  padding: 0.4rem;
+  background: none;
+  border: 1px solid var(--primary-color-teal);
+  color: var(--primary-color-grey);
+  margin-left: 1rem;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  border: 1px solid var(--primary-color-grey);
+  color: var(--primary-color-teal);
+  transform: scale(1.08);
+  cursor: pointer;
+}

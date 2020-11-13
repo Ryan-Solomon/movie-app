@@ -1,17 +1,23 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { useMovieSearchContext } from '../../context/movieSearchContext';
 import './MovieSearch.styles.css';
-import useDebounce from './../../custom-hooks/hooks';
 import MovieItem from './MovieItem';
+import { useHistory } from 'react-router-dom';
 
 const MovieSearch = () => {
   const { setSearchTerm, movies, error, isLoading } = useMovieSearchContext()!;
   const [input, setInput] = useState('');
-  const debouncedInput = useDebounce(input, 500);
+  const history = useHistory();
 
-  useEffect(() => {
-    setSearchTerm(debouncedInput);
-  }, [debouncedInput]);
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    setSearchTerm(input);
+  };
+
+  if (error) {
+    history.push('/error');
+  }
+  console.log(error);
 
   return (
     <main className='search-container'>
@@ -20,12 +26,18 @@ const MovieSearch = () => {
           <h1>Search a movie!</h1>
         </div>
         <div className='searchbar__input'>
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            type='text'
-            placeholder='Search'
-          />
+          <form onSubmit={handleSubmit}>
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              type='text'
+              placeholder='Search'
+              onClick={() => setSearchTerm(input)}
+            />
+            <button className='btn' type='submit'>
+              Search
+            </button>
+          </form>
           <div className='search-line'></div>
         </div>
       </section>

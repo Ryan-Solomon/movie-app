@@ -7,14 +7,15 @@ import React, {
   useState,
 } from 'react';
 import { TInitialMovieSearchContext, TMovie } from '../types/types';
-import { baseUrl, requestConfig } from '../api/api';
+import { requestConfig } from '../api/api';
 
 const initialContext = {
   movies: [],
   searchTerm: '',
-  error: null,
+  error: false,
   isLoading: false,
   setSearchTerm: (s: string) => null,
+  setError: (p: boolean) => null,
 };
 
 const MovieSearchContext = createContext<TInitialMovieSearchContext>(
@@ -25,7 +26,7 @@ export const MovieSearchContextProvider: FC<ReactNode> = ({ children }) => {
   const [movies, setMovies] = useState<TMovie[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchMoviesByTerm = async () => {
@@ -38,7 +39,11 @@ export const MovieSearchContextProvider: FC<ReactNode> = ({ children }) => {
           requestConfig
         );
         const data = await res.json();
-        setError(null);
+        if (data.Error) {
+          setError(true);
+          return;
+        }
+        setError(false);
         setMovies(data.Search);
         setIsLoading(false);
       } catch (err) {
@@ -57,6 +62,7 @@ export const MovieSearchContextProvider: FC<ReactNode> = ({ children }) => {
         error,
         isLoading,
         setSearchTerm,
+        setError,
       }}
     >
       {children}

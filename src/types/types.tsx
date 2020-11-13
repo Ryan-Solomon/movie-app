@@ -9,9 +9,10 @@ export type TMovie = {
 export type TInitialMovieSearchContext = {
   movies: TMovie[];
   searchTerm: string;
-  error: null | string;
+  error: boolean;
   isLoading: boolean;
   setSearchTerm: (s: string) => void;
+  setError: (e: boolean) => void;
 };
 
 export type TMovieDetails = {
