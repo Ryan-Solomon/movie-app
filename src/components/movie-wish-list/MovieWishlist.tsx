@@ -1,9 +1,19 @@
 import React from 'react';
+import WishListCard from './WishListCard';
+import './MovieWishlist.styles.css';
 
 const MovieWishlist = () => {
   return (
-    <div>
-      <h1>Ughhh. I wish I had the time to watch all of these movies!</h1>
+    <div className='wishlist-container'>
+      <header>
+        <h1>Add Movies To Your Watch List!</h1>
+      </header>
+      <div className='input'>
+        <input type='text' placeholder='Movie Title' />
+      </div>
+      <section className='todo-container'>
+        {/* Map over todos and add to ui */}
+      </section>
     </div>
   );
 };

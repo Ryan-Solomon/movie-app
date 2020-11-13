@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useHistory } from 'react-router-dom';
 import { TMovie } from '../../types/types';
 import './MovieItem.styles.css';
 
@@ -7,8 +8,14 @@ type Props = {
 };
 
 const MovieItem: FC<Props> = ({ movie }) => {
+  const history = useHistory();
+
+  const showMovieDetails = () => {
+    history.push(`/moviedetails/${movie.imdbID}`);
+  };
+
   return (
-    <div className='movie-item'>
+    <div onClick={showMovieDetails} className='movie-item'>
       <img src={movie.Poster} alt={movie.Title} />
 
       <div className='overlay'>
