@@ -17,6 +17,8 @@
 
 .trivia-question h1 {
   font-size: 2rem;
+  max-width: 90%;
+  margin: auto;
 }
 
 .trivia-quiz-options {
