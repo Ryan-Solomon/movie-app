@@ -12,8 +12,8 @@ const Navbar = () => {
             Movie <span>Buff</span>
           </Link>
         </h1>
-        <span>
-          <GiStrongMan size={24} />
+        <span className='icon'>
+          <GiStrongMan size={32} />
         </span>
       </div>
       <div className='navbar__links'>
@@ -25,7 +25,7 @@ const Navbar = () => {
             <Link to='/movietrivia'>Movie Trivia</Link>
           </li>
           <li>
-            <Link to='/moviewishlist'>Movie Wish List</Link>
+            <Link to='/moviewatchlist'>Movie Watch List</Link>
           </li>
         </ul>
       </div>

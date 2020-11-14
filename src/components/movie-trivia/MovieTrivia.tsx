@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+import TriviaDifficulty from './TriviaDifficulty';
+
+type TDifficulty = 'easy' | 'medium' | 'hard';
 
 const MovieTrivia = () => {
+  const [difficulty, setDifficulty] = useState<TDifficulty>();
+
   return (
-    <div>
-      <h1>TRIVIA!!!</h1>
-    </div>
+    <main>
+      <TriviaDifficulty setDifficulty={setDifficulty} />
+    </main>
   );
 };
 

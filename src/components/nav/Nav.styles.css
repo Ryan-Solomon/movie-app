@@ -15,6 +15,7 @@ a {
   align-items: center;
   padding: 1rem;
   transition: all 0.2s ease;
+  color: var(--primary-color-grey);
 }
 
 .navbar .navbar__title a {

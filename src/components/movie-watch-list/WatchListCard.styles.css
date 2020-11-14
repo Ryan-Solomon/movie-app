@@ -51,6 +51,7 @@
   opacity: 0;
   cursor: pointer;
   overflow: hidden;
+  display: inline-block;
 }
 .tilesWrap li button:before {
   content: '';

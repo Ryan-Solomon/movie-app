@@ -1,0 +1,113 @@
+.diff-container {
+  position: absolute;
+  height: 400px;
+  width: 700px;
+  top: 23rem;
+  left: calc(50% - 300px);
+  display: flex;
+}
+
+.main-title h1 {
+  color: var(--primary-color-grey);
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.diff-card {
+  display: flex;
+  height: 350px;
+  width: 250px;
+  background-color: var(--primary-color-dark);
+  border-radius: 10px;
+  box-shadow: -1rem 0 3rem rgba(92, 92, 92, 0.481);
+  /*   margin-left: -50px; */
+  transition: 0.4s ease-out;
+  position: relative;
+  left: 0px;
+}
+
+.diff-card:not(:first-child) {
+  margin-left: -50px;
+}
+
+.diff-card:hover {
+  transform: translateY(-20px);
+  transition: 0.4s ease-out;
+  cursor: pointer;
+}
+
+.diff-card:hover ~ .diff-card {
+  position: relative;
+  left: 50px;
+  transition: 0.4s ease-out;
+}
+
+.title {
+  color: var(--primary-color-teal);
+  font-weight: 400;
+  position: absolute;
+  left: 20px;
+  top: 15px;
+  font-size: 2rem;
+}
+
+.bar {
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  height: 5px;
+  width: 150px;
+}
+
+.emptybar {
+  background-color: #333;
+  width: 100%;
+  height: 100%;
+}
+
+.filledbar {
+  position: absolute;
+  top: 0px;
+  z-index: 3;
+  width: 0px;
+  height: 100%;
+  background: var(--primary-color-teal);
+  background: linear-gradient(
+    90deg,
+    var(--primary-color-teal) 0%,
+    rgb(0, 123, 121) 65%,
+    var(--primary-color-teal) 100%
+  );
+  transition: 0.6s ease-out;
+}
+
+.diff-card:hover .filledbar {
+  width: 120px;
+  transition: 0.4s ease-out;
+}
+
+.circle {
+  position: absolute;
+  top: 150px;
+  left: calc(50% - 60px);
+}
+
+.stroke {
+  stroke: var(--primary-color-teal);
+  stroke-dasharray: 360;
+  stroke-dashoffset: 360;
+  transition: 0.6s ease-out;
+}
+
+svg {
+  fill: var(--primary-color-dark);
+  stroke-width: 2px;
+}
+
+.diff-card:hover .stroke {
+  stroke-dashoffset: 100;
+  transition: 0.6s ease-out;
+}

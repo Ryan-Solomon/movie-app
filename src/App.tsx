@@ -6,7 +6,7 @@ import HomePage from './pages/HomePage';
 import MovieSearchPage from './pages/MovieSearchPage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
 import MovieTriviaPage from './pages/MovieTriviaPage';
-import MovieWishlistPage from './pages/MovieWishlistPage';
+import MovieWishlistPage from './pages/MovieWatchlistPage';
 import ErrorPage from './pages/ErrorPage';
 // PACKAGE IMPORTS
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -25,7 +25,7 @@ function App() {
         <Route exact path='/movietrivia'>
           <MovieTriviaPage />
         </Route>
-        <Route exact path='/moviewishlist'>
+        <Route exact path='/moviewatchlist'>
           <MovieWishlistPage />
         </Route>
         <Route exact path='/moviedetails/:id'>

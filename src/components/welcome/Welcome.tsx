@@ -24,7 +24,7 @@ const Welcome = () => {
             </Link>
           </li>
           <li>
-            <Link to='/moviewishlist'>
+            <Link to='/moviewatchlist'>
               <span className='teal-word'>Store</span> movies to your watch list
             </Link>
           </li>
