@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import TriviaDifficulty from './TriviaDifficulty';
+import TriviaQuiz from './TriviaQuiz';
 
 type TDifficulty = 'easy' | 'medium' | 'hard';
 
@@ -8,7 +9,11 @@ const MovieTrivia = () => {
 
   return (
     <main>
-      <TriviaDifficulty setDifficulty={setDifficulty} />
+      {difficulty ? (
+        <TriviaQuiz difficulty={difficulty} />
+      ) : (
+        <TriviaDifficulty setDifficulty={setDifficulty} />
+      )}
     </main>
   );
 };
