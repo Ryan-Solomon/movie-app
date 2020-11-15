@@ -5,6 +5,9 @@ import './Nav.styles.css';
 import { navItemData } from './NavItemData';
 
 const Navbar = () => {
+  // 1) Create a separate sidebar component with a sidebar class & put a mainnav class on this main nav
+  // 2) Add media queries in css to hide or show the navs depending on width
+
   return (
     <nav className='navbar'>
       <div className='navbar__title'>
