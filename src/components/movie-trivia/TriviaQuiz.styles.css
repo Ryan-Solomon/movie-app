@@ -31,8 +31,28 @@
 }
 
 .option {
-  background: var(--primary-color-grey);
   padding: 1.2rem;
-  margin: 0.4rem 0;
-  color: var(--primary-color-dark);
+  margin: 0.8rem 0;
+  color: var(--primary-color-grey);
+  border: 1px solid var(--primary-color-grey);
+  transition: all 0.2s ease;
+}
+
+.option:hover {
+  color: var(--primary-color-teal);
+  border: 1px solid var(--primary-color-teal);
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.question-count {
+  align-self: flex-end;
+  margin-right: 3rem;
+  color: var(--primary-color-grey);
+}
+
+.btn.trivia-quiz {
+  align-self: flex-end;
+  margin-right: 3rem;
+  color: var(--primary-color-grey);
 }

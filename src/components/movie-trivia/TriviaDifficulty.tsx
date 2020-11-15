@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import './TriviaDifficulty.styles.css';
 
 type Props = {
-  setDifficulty: (s: 'easy' | 'medium' | 'hard') => void;
+  setDifficulty: (s: 'easy' | 'medium' | 'hard' | null) => void;
 };
 
 const TriviaDifficulty: FC<Props> = ({ setDifficulty }) => {

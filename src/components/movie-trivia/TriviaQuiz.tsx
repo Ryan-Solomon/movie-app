@@ -2,9 +2,11 @@ import React, { FC, useEffect, useState } from 'react';
 import './TriviaQuiz.styles.css';
 import { useHistory } from 'react-router-dom';
 import TriviaQuizAnswer from './TriviaQuizAnswer';
+import GameOver from './GameOver';
 
 type Props = {
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: 'easy' | 'medium' | 'hard' | null;
+  setDifficulty: (s: 'easy' | 'medium' | 'hard' | null) => void;
 };
 
 type TQuizData = {
@@ -13,10 +15,14 @@ type TQuizData = {
   question: string;
 };
 
-const TriviaQuiz: FC<Props> = ({ difficulty }) => {
+const TriviaQuiz: FC<Props> = ({ difficulty, setDifficulty }) => {
   const [quizData, setQuizData] = useState<TQuizData[]>([]);
   const [questionNumber, setQuestionNumber] = useState(0);
   const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('loading');
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [gotItRight, setGotItRight] = useState<boolean | null>(null);
+  const [quizFinished, setQuizFinished] = useState(false);
+
   const history = useHistory();
 
   const fetchMovieQuestions = async () => {
@@ -38,6 +44,22 @@ const TriviaQuiz: FC<Props> = ({ difficulty }) => {
     fetchMovieQuestions();
   }, []);
 
+  const setNextQuestion = () => {
+    setGotItRight(null);
+    setQuestionNumber((q) => q + 1);
+  };
+
+  const handleAnswer = (answer: string) => {
+    console.log(answer);
+    console.log(atob(quizData[questionNumber].correct_answer));
+    if (answer === atob(quizData[questionNumber].correct_answer)) {
+      setCorrectAnswers((n) => n + 1);
+      setGotItRight(true);
+    } else {
+      setGotItRight(false);
+    }
+  };
+
   if (status === 'loading') return <h1>Loading...</h1>;
   if (status === 'error') {
     history.push('/error');
@@ -55,16 +77,52 @@ const TriviaQuiz: FC<Props> = ({ difficulty }) => {
   const allAnswers = [...incorrect_answers, correct_answer];
   shuffle(allAnswers);
 
+  if (quizFinished) {
+    return (
+      <GameOver setDifficulty={setDifficulty} correctAnswers={correctAnswers} />
+    );
+  }
+
   return (
     <main className='trivia-quiz-container'>
+      <div className='question-count'>
+        <h3>Question: {questionNumber + 1}/10</h3>
+      </div>
       <header className='trivia-question'>
         <h1>{atob(question)}</h1>
       </header>
       <section className='trivia-quiz-options'>
-        {allAnswers.map((answer) => {
-          return <TriviaQuizAnswer answer={atob(answer)} key={answer} />;
-        })}
+        {gotItRight ? (
+          <h1>Correct!</h1>
+        ) : gotItRight === false ? (
+          <>
+            <h1>Shoot, incorrect</h1>
+            <h2>The correct answer was {atob(correct_answer)}</h2>
+          </>
+        ) : (
+          allAnswers.map((answer) => {
+            return (
+              <TriviaQuizAnswer
+                handleAnswer={handleAnswer}
+                answer={atob(answer)}
+                key={answer}
+              />
+            );
+          })
+        )}
       </section>
+      {questionNumber + 1 === 10 ? (
+        <button
+          onClick={() => setQuizFinished(true)}
+          className='btn trivia-quiz'
+        >
+          Finish Quiz
+        </button>
+      ) : (
+        <button onClick={setNextQuestion} className='btn trivia-quiz'>
+          Next Question
+        </button>
+      )}
     </main>
   );
 };
