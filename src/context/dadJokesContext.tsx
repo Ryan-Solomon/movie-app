@@ -3,9 +3,7 @@ import React, {
   FC,
   ReactNode,
   useContext,
-  useEffect,
   useReducer,
-  useState,
 } from 'react';
 
 type TInitialContext = {
@@ -64,10 +62,10 @@ export const DadJokeProvider: FC<ReactNode> = ({ children }) => {
     });
     try {
       const res = await fetch('https://icanhazdadjoke.com/slack');
-      const { text } = await res.json();
+      const { attachments } = await res.json();
       dispatch({
         type: 'SET_DAD_JOKE',
-        payload: text,
+        payload: attachments[0].text,
       });
     } catch (err) {
       dispatch({
@@ -76,10 +74,6 @@ export const DadJokeProvider: FC<ReactNode> = ({ children }) => {
       console.error(err);
     }
   };
-
-  useEffect(() => {
-    fetchDadJoke();
-  }, []);
 
   return (
     <DadJokeContext.Provider value={{ dadJoke, loading, error, fetchDadJoke }}>
