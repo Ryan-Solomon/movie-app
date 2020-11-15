@@ -67,21 +67,12 @@ a {
   top: 0.2rem;
 }
 
-.hamburger-nav {
-  display: none;
-  opacity: 0;
-  height: 0%;
+svg {
+  fill: currentColor;
 }
 
-@media (max-width: 500px) {
-  .main-nav {
+@media (max-width: 900px) {
+  .navbar__links {
     display: none;
-    opacity: 0;
-    height: 0%;
-  }
-
-  .hamburger-nav {
-    display: flex;
-    opacity: 1;
   }
 }
