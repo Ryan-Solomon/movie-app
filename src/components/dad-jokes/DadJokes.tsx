@@ -1,5 +1,5 @@
 import React from 'react';
-import './DadJokes.css';
+import './DadJokes.scss';
 import DadJoke from './DadJoke';
 import { useDadJokeContext } from '../../context/dadJokesContext';
 
@@ -13,9 +13,11 @@ const DadJokes = () => {
           Generate A Dad Joke
         </button>
       </section>
-      <section className='dad-joke'>
-        <DadJoke dadJoke={dadJoke} />
-      </section>
+      {dadJoke && (
+        <section className='dad-joke'>
+          <DadJoke dadJoke={dadJoke} />
+        </section>
+      )}
     </main>
   );
 };
