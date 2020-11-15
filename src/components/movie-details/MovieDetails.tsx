@@ -41,7 +41,8 @@ const MovieDetails = () => {
     fetchMovieByTitle();
   }, [id]);
 
-  if (status === 'loading') return <h1>Loading...</h1>;
+  if (status === 'loading')
+    return <h1 style={{ color: 'whitesmoke' }}>Loading...</h1>;
   if (status === 'error') {
     history.push('/error');
   }

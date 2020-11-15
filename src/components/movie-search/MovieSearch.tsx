@@ -44,7 +44,7 @@ const MovieSearch = () => {
 
       <section className='search-container__gallery'>
         {isLoading ? (
-          <h1>Loading...</h1>
+          <h1 style={{ color: 'whitesmoke' }}>Loading...</h1>
         ) : (
           movies.map((movie) => {
             return <MovieItem key={movie.Title + movie.Year} movie={movie} />;

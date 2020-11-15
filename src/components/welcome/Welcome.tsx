@@ -14,18 +14,24 @@ const Welcome = () => {
         <ul>
           <li>
             <Link to='/moviesearch'>
-              <span className='teal-word'>Get</span> details about your favorite
+              Get<span className='teal-word'> details</span> about your favorite
               movies
             </Link>
           </li>
           <li>
             <Link to='/movietrivia'>
-              <span className='teal-word'>Play</span> movie trivia
+              Play movie<span className='teal-word'> trivia</span>
             </Link>
           </li>
           <li>
             <Link to='/moviewatchlist'>
-              <span className='teal-word'>Store</span> movies to your watch list
+              Store movies to your <span className='teal-word'>watch list</span>
+            </Link>
+          </li>
+          <li>
+            <Link to='/dadjokes'>
+              Grab some <span className='teal-word'>dad jokes</span> for your
+              trip to the movies
             </Link>
           </li>
         </ul>

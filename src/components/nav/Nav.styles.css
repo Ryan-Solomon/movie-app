@@ -60,3 +60,9 @@ a {
 .navbar__title:hover a {
   color: var(--primary-color-teal);
 }
+
+.icon {
+  color: var(--primary-color-teal);
+  position: relative;
+  top: 0.2rem;
+}
