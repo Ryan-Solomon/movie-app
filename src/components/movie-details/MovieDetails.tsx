@@ -1,31 +1,50 @@
 import { image } from 'faker';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { TMovieDetails } from '../../types/types';
 import './MovieDetails.styles.css';
+
+type TStatus = 'idle' | 'loading' | 'error';
 
 const MovieDetails = () => {
   const { id } = useParams<{ id: string }>();
   const [movie, setMovie] = useState<TMovieDetails>();
+  const [status, setStatus] = useState<TStatus>('idle');
+  const history = useHistory();
 
   useEffect(() => {
+    setStatus('loading');
     const fetchMovieByTitle = async () => {
-      const res = await fetch(
-        `https://movie-database-imdb-alternative.p.rapidapi.com/?i=${id}&r=json&plot=short`,
-        {
-          method: 'GET',
-          headers: {
-            'x-rapidapi-key': `${process.env.REACT_APP_MOVIE_SEARCH_API_KEY}`,
-            'x-rapidapi-host': 'movie-database-imdb-alternative.p.rapidapi.com',
-          },
+      try {
+        const res = await fetch(
+          `https://movie-database-imdb-alternative.p.rapidapi.com/?i=${id}&r=json&plot=short`,
+          {
+            method: 'GET',
+            headers: {
+              'x-rapidapi-key': `${process.env.REACT_APP_MOVIE_SEARCH_API_KEY}`,
+              'x-rapidapi-host':
+                'movie-database-imdb-alternative.p.rapidapi.com',
+            },
+          }
+        );
+        const data = await res.json();
+        if (data.Error) {
+          setStatus('error');
         }
-      );
-      const data = await res.json();
-      console.log(data);
-      setMovie(data);
+        setMovie(data);
+        setStatus('idle');
+      } catch (err) {
+        console.error(err);
+        setStatus('error');
+      }
     };
     fetchMovieByTitle();
   }, [id]);
+
+  if (status === 'loading') return <h1>Loading...</h1>;
+  if (status === 'error') {
+    history.push('/error');
+  }
 
   return (
     <div className='wrapper'>
