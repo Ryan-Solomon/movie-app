@@ -8,6 +8,7 @@ import MovieDetailsPage from './pages/MovieDetailsPage';
 import MovieTriviaPage from './pages/MovieTriviaPage';
 import MovieWishlistPage from './pages/MovieWatchlistPage';
 import ErrorPage from './pages/ErrorPage';
+import DadJokesPage from './pages/DadJokesPage';
 // PACKAGE IMPORTS
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -30,6 +31,9 @@ function App() {
         </Route>
         <Route exact path='/moviedetails/:id'>
           <MovieDetailsPage />
+        </Route>
+        <Route exact path='/dadjokes'>
+          <DadJokesPage />
         </Route>
         <Route path='*'>
           <ErrorPage />
