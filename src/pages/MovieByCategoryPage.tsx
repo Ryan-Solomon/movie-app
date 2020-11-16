@@ -1,7 +1,7 @@
 import React from 'react';
 import UpcomingMovieSearch from '../components/upcoming-movies/UpcomingMovieSearch';
 
-const UpcomingMoviesPage = () => {
+const MovieByCategoryPage = () => {
   return (
     <>
       <UpcomingMovieSearch />
@@ -9,4 +9,4 @@ const UpcomingMoviesPage = () => {
   );
 };
 
-export default UpcomingMoviesPage;
+export default MovieByCategoryPage;
