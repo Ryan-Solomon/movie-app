@@ -10,6 +10,7 @@ import MovieWishlistPage from './pages/MovieWatchlistPage';
 import ErrorPage from './pages/ErrorPage';
 import DadJokesPage from './pages/DadJokesPage';
 import Sidebar from './components/sidebar/Sidebar';
+import UpcomingMoviesPage from './pages/UpcomingMoviesPage';
 // PACKAGE IMPORTS
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -29,6 +30,9 @@ function App() {
             </Route>
             <Route exact path='/moviesearch'>
               <MovieSearchPage />
+            </Route>
+            <Route exact path='/upcomingmoviesearch'>
+              <UpcomingMoviesPage />
             </Route>
             <Route exact path='/movietrivia'>
               <MovieTriviaPage />

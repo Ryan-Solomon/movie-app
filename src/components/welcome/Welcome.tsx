@@ -11,30 +11,11 @@ const Welcome = () => {
       </section>
 
       <section className='welcome-container__features'>
-        <ul>
-          <li>
-            <Link to='/moviesearch'>
-              Get<span className='teal-word'> details</span> about your favorite
-              movies
-            </Link>
-          </li>
-          <li>
-            <Link to='/movietrivia'>
-              Play movie<span className='teal-word'> trivia</span>
-            </Link>
-          </li>
-          <li>
-            <Link to='/moviewatchlist'>
-              Store movies to your <span className='teal-word'>watch list</span>
-            </Link>
-          </li>
-          <li>
-            <Link to='/dadjokes'>
-              Grab some <span className='teal-word'>dad jokes</span> for your
-              trip to the movies
-            </Link>
-          </li>
-        </ul>
+        <p>
+          The place to be for searching movies, playing movie trivia, creating a
+          watch list, and yes, we even have dad jokes for some entertainment
+          between movies
+        </p>
       </section>
     </main>
   );

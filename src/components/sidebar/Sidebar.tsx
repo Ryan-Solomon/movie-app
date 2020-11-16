@@ -10,7 +10,7 @@ export default (props: any) => {
         Home
       </Link>
       <Link className='menu-item' to='/moviesearch'>
-        Search Any Movie
+        Search A Movie
       </Link>
       <Link className='menu-item' to='/movietrivia'>
         Movie Trivia

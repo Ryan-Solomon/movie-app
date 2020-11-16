@@ -30,6 +30,7 @@
 .welcome-container__features {
   display: flex;
   flex-direction: column;
+  width: 70%;
 }
 
 .welcome-container__features ul {
@@ -53,4 +54,9 @@
 
 .welcome-container__features ul li a:hover {
   color: var(--primary-color-teal);
+}
+
+.welcome-container__features p {
+  font-size: 2rem;
+  line-height: 2;
 }
