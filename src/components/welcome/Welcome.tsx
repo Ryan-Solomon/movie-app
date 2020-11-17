@@ -13,7 +13,7 @@ const Welcome = () => {
         <p>
           The place to be for searching movies, playing movie trivia, creating a
           watch list, and yes, we even have dad jokes for some entertainment
-          between movies
+          between movies.
         </p>
       </section>
     </main>

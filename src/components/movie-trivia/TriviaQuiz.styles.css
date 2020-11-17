@@ -56,3 +56,54 @@
   margin-right: 3rem;
   color: var(--primary-color-grey);
 }
+
+@media (max-width: 650px) {
+  .trivia-quiz-container {
+    height: 80vh;
+    margin: 3rem auto;
+  }
+
+  .trivia-question h1 {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .option {
+    padding: 0.6rem;
+  }
+
+  .option h3 {
+    font-size: 1rem;
+  }
+
+  .trivia-quiz-options h1,
+  .trivia-quiz-options h2 {
+    font-size: 1.3rem;
+  }
+
+  .searchbar__title h1,
+  .todobar__title h1 {
+    font-size: 2rem;
+  }
+
+  .dad-jokes-container__header .dad-joke-generator {
+    padding: 1rem;
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 500px) {
+    .diff-container {
+      width: 100vw;
+      transform: translateX(100px);
+    }
+
+    .diff-card {
+      width: 160px;
+      /* left: 100px; */
+    }
+
+    .diff-card .bar {
+      width: 100px;
+    }
+  }
+}
