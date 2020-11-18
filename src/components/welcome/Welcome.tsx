@@ -21,5 +21,3 @@ const Welcome = () => {
 };
 
 export default Welcome;
-
-// Welcome animation and pulse hamburger menu

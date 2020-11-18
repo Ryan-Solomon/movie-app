@@ -23,7 +23,7 @@ const MovieSearch = () => {
     <main className='search-container'>
       <section className='search-container__searchbar'>
         <div className='searchbar__title'>
-          <h1>Search a movie!</h1>
+          <h1>Search A Movie!</h1>
         </div>
         <div className='searchbar__input'>
           <form onSubmit={handleSubmit}>

@@ -11,6 +11,7 @@ import ErrorPage from './pages/ErrorPage';
 import DadJokesPage from './pages/DadJokesPage';
 import Sidebar from './components/sidebar/Sidebar';
 import MovieByCategoryPage from './pages/MovieByCategoryPage';
+import MovieDetailPage from './pages/MovieDetailPage';
 // PACKAGE IMPORTS
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -51,6 +52,9 @@ function App() {
             </Route>
             <Route exact path='/moviedetails/:id'>
               <MovieDetailsPage />
+            </Route>
+            <Route exact path='/moviedetail/:id'>
+              <MovieDetailPage />
             </Route>
             <Route exact path='/dadjokes'>
               <DadJokesPage />

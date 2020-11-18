@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { TMovieDetails } from '../../types/types';
-import './MovieDetails.styles.css';
 
 type TStatus = 'idle' | 'loading' | 'error';
 
-const MovieDetails = () => {
+type TMovieDetail = {
+  backdrop_path: string;
+  title: string;
+  overview: string;
+  runtime: number;
+};
+
+const MovieDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const [movie, setMovie] = useState<TMovieDetails>();
+  const [movie, setMovie] = useState<TMovieDetail>();
   const [status, setStatus] = useState<TStatus>('idle');
   const history = useHistory();
 
@@ -16,16 +22,9 @@ const MovieDetails = () => {
     const fetchMovieByTitle = async () => {
       try {
         const res = await fetch(
-          `https://movie-database-imdb-alternative.p.rapidapi.com/?i=${id}&r=json&plot=short`,
-          {
-            method: 'GET',
-            headers: {
-              'x-rapidapi-key': `${process.env.REACT_APP_MOVIE_SEARCH_API_KEY}`,
-              'x-rapidapi-host':
-                'movie-database-imdb-alternative.p.rapidapi.com',
-            },
-          }
+          `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_UPCOMING_MOVIE_SEARCH_API_KEY}&language=en-US`
         );
+
         const data = await res.json();
         if (data.Error) {
           setStatus('error');
@@ -50,24 +49,13 @@ const MovieDetails = () => {
     <div className='wrapper'>
       <h2>Hover for details</h2>
       <div className='card'>
-        <img src={movie?.Poster} />
+        <img src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`} />
         <div className='descriptions'>
-          <h1>{movie?.Title}</h1>
-          <p>{movie?.Plot}</p>
+          <h1>{movie?.title}</h1>
+          <p>{movie?.overview}</p>
+
           <h3>
-            <span>Directors - </span> {movie?.Director}
-          </h3>
-          <h3>
-            <span>Actors - </span> {movie?.Actors}
-          </h3>
-          <h3>
-            <span>Released - </span> {movie?.Released}
-          </h3>
-          <h3>
-            <span>Runtime - </span> {movie?.Runtime}
-          </h3>
-          <h3>
-            <span>Rating - </span> {movie?.imdbRating}
+            <span>Runtime - </span> {movie?.runtime} minutes
           </h3>
         </div>
       </div>
@@ -75,4 +63,4 @@ const MovieDetails = () => {
   );
 };
 
-export default MovieDetails;
+export default MovieDetail;
