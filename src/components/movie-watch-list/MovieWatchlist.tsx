@@ -4,6 +4,7 @@ import './MovieWatchlist.styles.css';
 
 type TAction =
   | { type: 'ADD_TODO'; payload: string }
+  | { type: 'SET_ALL_MOVIES'; payload: string[] }
   | { type: 'REMOVE_TODO'; payload: string };
 
 interface TState {
@@ -23,6 +24,11 @@ const todoReducer = (prevState: TState, action: TAction): TState => {
         ...prevState,
         todos: prevState.todos.filter((todo) => todo !== action.payload),
       };
+    case 'SET_ALL_MOVIES':
+      return {
+        ...prevState,
+        todos: action.payload,
+      };
     default:
       return { ...prevState };
   }
@@ -30,11 +36,23 @@ const todoReducer = (prevState: TState, action: TAction): TState => {
 
 const MovieWishlist = () => {
   const [state, dispatch] = useReducer(todoReducer, initialState);
-
   const [input, setInput] = useState('');
 
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(state.todos));
+    console.log('hey');
+    const moviesFromStorage = localStorage.getItem('movies');
+    console.log(moviesFromStorage);
+    if (moviesFromStorage) {
+      dispatch({
+        type: 'SET_ALL_MOVIES',
+        payload: JSON.parse(moviesFromStorage),
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(state.todos);
+    localStorage.setItem('movies', JSON.stringify(state.todos));
   }, [state.todos]);
 
   const handleAddTodo = (e: FormEvent) => {
