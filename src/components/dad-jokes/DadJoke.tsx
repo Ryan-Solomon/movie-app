@@ -5,7 +5,7 @@ type Props = {
 };
 
 const DadJoke: FC<Props> = ({ dadJoke }) => {
-  return <h2>{dadJoke}</h2>;
+  return <h2 data-testid='dad-joke'>{dadJoke}</h2>;
 };
 
 export default DadJoke;

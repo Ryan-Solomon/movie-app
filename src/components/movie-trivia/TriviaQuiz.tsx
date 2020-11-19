@@ -35,7 +35,6 @@ const TriviaQuiz: FC<Props> = ({ difficulty, setDifficulty }) => {
       setQuizData(results);
       setStatus('idle');
     } catch (error) {
-      console.log(error);
       setStatus('error');
     }
   };
@@ -50,8 +49,6 @@ const TriviaQuiz: FC<Props> = ({ difficulty, setDifficulty }) => {
   };
 
   const handleAnswer = (answer: string) => {
-    console.log(answer);
-    console.log(atob(quizData[questionNumber].correct_answer));
     if (answer === atob(quizData[questionNumber].correct_answer)) {
       setCorrectAnswers((n) => n + 1);
       setGotItRight(true);

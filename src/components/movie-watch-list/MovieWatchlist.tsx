@@ -39,9 +39,7 @@ const MovieWishlist = () => {
   const [input, setInput] = useState('');
 
   useEffect(() => {
-    console.log('hey');
     const moviesFromStorage = localStorage.getItem('movies');
-    console.log(moviesFromStorage);
     if (moviesFromStorage) {
       dispatch({
         type: 'SET_ALL_MOVIES',
@@ -51,7 +49,6 @@ const MovieWishlist = () => {
   }, []);
 
   useEffect(() => {
-    console.log(state.todos);
     localStorage.setItem('movies', JSON.stringify(state.todos));
   }, [state.todos]);
 

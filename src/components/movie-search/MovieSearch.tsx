@@ -17,7 +17,6 @@ const MovieSearch = () => {
   if (error) {
     history.push('/error');
   }
-  console.log(error);
 
   return (
     <main className='search-container'>
