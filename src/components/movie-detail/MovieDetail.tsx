@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { TMovieDetails } from '../../types/types';
 
 type TStatus = 'idle' | 'loading' | 'error';
 
@@ -49,7 +48,10 @@ const MovieDetail = () => {
     <div className='wrapper'>
       <h2>Hover for details</h2>
       <div className='card'>
-        <img src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`} />
+        <img
+          src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}
+          alt={movie?.title}
+        />
         <div className='descriptions'>
           <h1>{movie?.title}</h1>
           <p>{movie?.overview}</p>

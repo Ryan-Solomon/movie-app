@@ -25,23 +25,22 @@ const TriviaQuiz: FC<Props> = ({ difficulty, setDifficulty }) => {
 
   const history = useHistory();
 
-  const fetchMovieQuestions = async () => {
-    setStatus('loading');
-    try {
-      const res = await fetch(
-        `https://opentdb.com/api.php?amount=10&category=11&difficulty=${difficulty}&type=multiple&encode=base64`
-      );
-      const { results } = await res.json();
-      setQuizData(results);
-      setStatus('idle');
-    } catch (error) {
-      setStatus('error');
-    }
-  };
-
   useEffect(() => {
+    const fetchMovieQuestions = async () => {
+      setStatus('loading');
+      try {
+        const res = await fetch(
+          `https://opentdb.com/api.php?amount=10&category=11&difficulty=${difficulty}&type=multiple&encode=base64`
+        );
+        const { results } = await res.json();
+        setQuizData(results);
+        setStatus('idle');
+      } catch (error) {
+        setStatus('error');
+      }
+    };
     fetchMovieQuestions();
-  }, []);
+  }, [difficulty]);
 
   const setNextQuestion = () => {
     setGotItRight(null);

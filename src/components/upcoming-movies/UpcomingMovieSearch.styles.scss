@@ -1,0 +1,10 @@
+.adjust-current-page-buttons {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 0 0 3rem 0;
+
+  button {
+    margin-left: 0;
+  }
+}

@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { useHistory } from 'react-router-dom';
 import './GameOver.styles.css';
 
 type Props = {
@@ -8,8 +7,6 @@ type Props = {
 };
 
 const GameOver: FC<Props> = ({ correctAnswers, setDifficulty }) => {
-  const history = useHistory();
-
   return (
     <main className='trivia-quiz-container'>
       <header className='trivia-question results-header'>
