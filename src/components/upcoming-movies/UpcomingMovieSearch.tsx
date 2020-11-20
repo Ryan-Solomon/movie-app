@@ -2,13 +2,16 @@ import React, { useEffect, useReducer, useState } from 'react';
 import { upcomingMovieReducer, initialState } from './upcomingMovieReducer';
 import UpcomingMovieItem from './UpcomingMovieItem';
 import { useHistory, useLocation } from 'react-router-dom';
+import './UpcomingMovieSearch.styles.scss';
 
 const UpcomingMovieSearch = () => {
   const [state, dispatch] = useReducer(upcomingMovieReducer, initialState);
   const history = useHistory();
   const [searchType, setSearchType] = useState('');
   const { pathname } = useLocation();
+  const [page, setPage] = useState(1);
   const searchParam = pathname.substring(1);
+  const [showNextPageButton, setShowNextPageButton] = useState(true);
 
   useEffect(() => {
     switch (searchParam) {
@@ -31,28 +34,47 @@ const UpcomingMovieSearch = () => {
     }
   }, [searchParam]);
 
-  const fetchUpcomingMovies = async () => {
-    dispatch({
-      type: 'FETCH_MOVIES',
-    });
-    try {
-      const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${searchParam}?api_key=${process.env.REACT_APP_UPCOMING_MOVIE_SEARCH_API_KEY}&language=en-US&page=1`
-      );
-      const data = await res.json();
-      dispatch({
-        type: 'SET_MOVIES',
-        payload: data.results,
-      });
-    } catch (err) {
-      console.error(err);
-      dispatch({ type: 'SET_ERROR' });
+  const changeMoviePage = (direction: 'NEXT' | 'PREVIOUS') => {
+    switch (direction) {
+      case 'NEXT':
+        setPage((p) => p + 1);
+        return;
+      case 'PREVIOUS':
+        if (!showNextPageButton) {
+          setShowNextPageButton(true);
+        }
+        setPage((p) => (p - 1 >= 0 ? p - 1 : 0));
+        return;
+      default:
+        return;
     }
   };
 
   useEffect(() => {
+    const fetchUpcomingMovies = async () => {
+      dispatch({
+        type: 'FETCH_MOVIES',
+      });
+      try {
+        const res = await fetch(
+          `https://api.themoviedb.org/3/movie/${searchParam}?api_key=${process.env.REACT_APP_UPCOMING_MOVIE_SEARCH_API_KEY}&language=en-US&page=${page}`
+        );
+        const data = await res.json();
+        if (page > data.page) {
+          setShowNextPageButton(false);
+          return;
+        }
+        dispatch({
+          type: 'SET_MOVIES',
+          payload: data.results,
+        });
+      } catch (err) {
+        console.error(err);
+        dispatch({ type: 'SET_ERROR' });
+      }
+    };
     fetchUpcomingMovies();
-  }, [searchParam]);
+  }, [searchParam, page]);
 
   const { status, upcomingFilms } = state;
 
@@ -77,6 +99,26 @@ const UpcomingMovieSearch = () => {
           })
         )}
       </section>
+      <div className='current-page'>
+        <h4>Current Page: {page}</h4>
+      </div>
+      <div className='adjust-current-page-buttons'>
+        <button
+          disabled={page <= 1}
+          className='btn'
+          onClick={() => changeMoviePage('PREVIOUS')}
+        >
+          Previous Page
+        </button>
+
+        <button
+          disabled={!showNextPageButton}
+          className='btn'
+          onClick={() => changeMoviePage('NEXT')}
+        >
+          Next Page
+        </button>
+      </div>
     </main>
   );
 };

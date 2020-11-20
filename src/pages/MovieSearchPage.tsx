@@ -9,4 +9,4 @@ const MovieSearchPage = () => {
   );
 };
 
-export default MovieSearch;
+export default MovieSearchPage;
