@@ -32,6 +32,7 @@ const TriviaQuiz: FC<Props> = ({ difficulty, setDifficulty }) => {
         const res = await fetch(
           `https://opentdb.com/api.php?amount=10&category=11&difficulty=${difficulty}&type=multiple&encode=base64`
         );
+        if (status === 'idle') return;
         const { results } = await res.json();
         setQuizData(results);
         setStatus('idle');
@@ -40,6 +41,8 @@ const TriviaQuiz: FC<Props> = ({ difficulty, setDifficulty }) => {
       }
     };
     fetchMovieQuestions();
+
+    return () => setStatus('idle');
   }, [difficulty]);
 
   const setNextQuestion = () => {

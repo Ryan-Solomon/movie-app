@@ -18,4 +18,14 @@ describe('Upcoming Movie Item Component', () => {
     expect(screen.getByText(/loading/i)).toBeInTheDocument();
     screen.debug();
   });
+  test('renders to page', async () => {
+    render(
+      <TrivaQuiz difficulty={difficulty} setDifficulty={setDifficulty} />,
+      {
+        wrapper: MemoryRouter,
+      }
+    );
+    expect(await screen.findByText(/question: /i)).toBeInTheDocument();
+    screen.debug();
+  });
 });
