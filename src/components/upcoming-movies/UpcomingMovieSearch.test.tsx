@@ -8,7 +8,6 @@ import userEvent from '@testing-library/user-event';
 describe('Upcoming Movie Search Component', () => {
   test('renders to page', () => {
     render(<UpcomingMovieSearch />, { wrapper: MemoryRouter });
-    screen.debug();
     expect(screen.getByText(/movies/i)).toBeInTheDocument();
   });
 

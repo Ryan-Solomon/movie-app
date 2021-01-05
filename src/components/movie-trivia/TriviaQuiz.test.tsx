@@ -16,7 +16,6 @@ describe('Upcoming Movie Item Component', () => {
       }
     );
     expect(screen.getByText(/loading/i)).toBeInTheDocument();
-    screen.debug();
   });
   test('renders to page', async () => {
     render(
@@ -26,6 +25,6 @@ describe('Upcoming Movie Item Component', () => {
       }
     );
     expect(await screen.findByText(/question: /i)).toBeInTheDocument();
-    screen.debug();
+    // screen.debug();
   });
 });
