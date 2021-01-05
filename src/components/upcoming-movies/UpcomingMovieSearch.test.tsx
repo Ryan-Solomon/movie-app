@@ -1,13 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import UpcomingMovieSearch from './UpcomingMovieSearch';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
 
 describe('Upcoming Movie Search Component', () => {
   test('renders to page', () => {
     render(<UpcomingMovieSearch />, { wrapper: MemoryRouter });
-
+    screen.debug();
     expect(screen.getByText(/movies/i)).toBeInTheDocument();
   });
 
@@ -27,5 +28,19 @@ describe('Upcoming Movie Search Component', () => {
     expect(pageText).toHaveTextContent(/current page: 2/i);
     userEvent.click(prevPage);
     expect(pageText).toHaveTextContent(/current page: 1/i);
+  });
+
+  test('full app rendering/navigating', () => {
+    const history = createMemoryHistory();
+    render(
+      <Router history={history}>
+        <UpcomingMovieSearch />
+      </Router>
+    );
+
+    // const leftClick = { button: 0 };
+    // userEvent.click(screen.getByTestId('div-wrapper'), leftClick);
+
+    // expect(screen.getByText(/you are on the about page/i)).toBeInTheDocument();
   });
 });
