@@ -3,9 +3,6 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Router } from 'react-router-dom';
 import UpcomingMovieItem from './UpcomingMovieItem';
 import { UpcomingMovie } from './upcomingMovieReducer';
-import { createMemoryHistory } from 'history';
-
-import userEvent from '@testing-library/user-event';
 
 const mockMovie: UpcomingMovie = {
   poster_path: '123',
