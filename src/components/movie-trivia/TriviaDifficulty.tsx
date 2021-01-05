@@ -8,7 +8,7 @@ type Props = {
 const TriviaDifficulty: FC<Props> = ({ setDifficulty }) => {
   return (
     <>
-      <div className='main-title'>
+      <div className='main-title' data-testid='diff-card'>
         <h1>Choose Your Difficulty</h1>
       </div>
       <div className='diff-container'>
