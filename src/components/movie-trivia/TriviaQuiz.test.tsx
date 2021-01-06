@@ -38,4 +38,23 @@ describe('Upcoming Movie Item Component', () => {
     userEvent.click(nextButton);
     expect(await screen.findByText(/question: 2/i)).toBeInTheDocument();
   });
+  test('click option and show correct/false', async () => {
+    render(
+      <TrivaQuiz difficulty={difficulty} setDifficulty={setDifficulty} />,
+      {
+        wrapper: MemoryRouter,
+      }
+    );
+    expect(await screen.findByText(/question: 1/i)).toBeInTheDocument();
+    const optionDivs = screen.getAllByTestId('quiz-option');
+    expect(optionDivs[0]).toBeInTheDocument();
+    userEvent.click(optionDivs[0]);
+
+    const corretOrIncorrect = await screen.findAllByText(
+      /(correct|incorrect)/i
+    );
+    expect(corretOrIncorrect[0]).toBeInTheDocument();
+
+    screen.debug();
+  });
 });
