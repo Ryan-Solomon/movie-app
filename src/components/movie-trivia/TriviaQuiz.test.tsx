@@ -54,7 +54,5 @@ describe('Upcoming Movie Item Component', () => {
       /(correct|incorrect)/i
     );
     expect(corretOrIncorrect[0]).toBeInTheDocument();
-
-    screen.debug();
   });
 });
