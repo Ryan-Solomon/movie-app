@@ -7,7 +7,11 @@ type Props = {
 
 const TriviaQuizAnswer: FC<Props> = ({ answer, handleAnswer }) => {
   return (
-    <div onClick={() => handleAnswer(answer)} className='option'>
+    <div
+      data-testid='quiz-option'
+      onClick={() => handleAnswer(answer)}
+      className='option'
+    >
       <h3>{answer}</h3>
     </div>
   );
