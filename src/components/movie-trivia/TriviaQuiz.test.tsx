@@ -25,6 +25,17 @@ describe('Upcoming Movie Item Component', () => {
       }
     );
     expect(await screen.findByText(/question: /i)).toBeInTheDocument();
-    // screen.debug();
+  });
+  test('click next button to show next question', async () => {
+    render(
+      <TrivaQuiz difficulty={difficulty} setDifficulty={setDifficulty} />,
+      {
+        wrapper: MemoryRouter,
+      }
+    );
+    expect(await screen.findByText(/question: 1/i)).toBeInTheDocument();
+    const nextButton = screen.getByRole(/button/);
+    userEvent.click(nextButton);
+    expect(await screen.findByText(/question: 2/i)).toBeInTheDocument();
   });
 });
