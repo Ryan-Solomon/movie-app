@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Router } from 'react-router-dom';
 import MovieWatchList from './MovieWatchlist';
-import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
 
 describe('Movie Watch List', () => {
@@ -18,5 +17,15 @@ describe('Movie Watch List', () => {
     expect(screen.queryByRole(/listitem/i)).not.toBeInTheDocument();
     userEvent.click(addBtn);
     expect(screen.queryByRole(/listitem/i)).toBeInTheDocument();
+  });
+  test('inputting text and displaying that item', () => {
+    render(<MovieWatchList />, { wrapper: MemoryRouter });
+    const addBtn = screen.getByRole(/button/i, { name: 'Add' });
+    const inputElement = screen.getByRole(/textbox/i);
+    expect(addBtn).toBeInTheDocument();
+    expect(inputElement).toBeInTheDocument();
+    userEvent.type(inputElement, 'Dark Knight');
+    userEvent.click(addBtn);
+    expect(screen.getByText('Dark Knight')).toBeInTheDocument();
   });
 });
