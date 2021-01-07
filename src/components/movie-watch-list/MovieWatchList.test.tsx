@@ -10,13 +10,16 @@ describe('Movie Watch List', () => {
     const heading = screen.getByRole(/heading/i);
     expect(heading).toBeInTheDocument();
   });
-  test('clicking the add button adds an item to the page', () => {
+  test('clicking the add button adds an item to the page, clicking remove removes it', () => {
     render(<MovieWatchList />, { wrapper: MemoryRouter });
     const addBtn = screen.getByRole(/button/i, { name: 'Add' });
     expect(addBtn).toBeInTheDocument();
     expect(screen.queryByRole(/listitem/i)).not.toBeInTheDocument();
     userEvent.click(addBtn);
     expect(screen.queryByRole(/listitem/i)).toBeInTheDocument();
+    const removeBtn = screen.getByRole(/button/i, { name: 'Remove' });
+    userEvent.click(removeBtn);
+    expect(screen.queryByRole(/listitem/i)).not.toBeInTheDocument();
   });
   test('inputting text and displaying that item', () => {
     render(<MovieWatchList />, { wrapper: MemoryRouter });
