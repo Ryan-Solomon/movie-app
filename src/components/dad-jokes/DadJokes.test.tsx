@@ -11,4 +11,16 @@ describe('Dad Jokes Component', () => {
     });
     expect(screen.getByText(/generate a dad joke/i)).toBeInTheDocument();
   });
+  test('clicking generate dad joke, calls on click', () => {
+    render(<DadJokes />, {
+      wrapper: MemoryRouter,
+    });
+    const fn = jest.fn();
+    const generateJokeBtn = screen.getByRole(/button/, {
+      name: /generate a dad joke/i,
+    });
+    generateJokeBtn.onclick = fn;
+    userEvent.click(generateJokeBtn);
+    expect(fn).toBeCalledTimes(1);
+  });
 });
