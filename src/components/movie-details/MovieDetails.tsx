@@ -14,6 +14,7 @@ const MovieDetails = () => {
   useEffect(() => {
     setStatus('loading');
     const fetchMovieByTitle = async () => {
+      if (!id) return;
       try {
         const res = await fetch(
           `https://movie-database-imdb-alternative.p.rapidapi.com/?i=${id}&r=json&plot=short`,
