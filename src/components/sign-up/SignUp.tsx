@@ -29,7 +29,7 @@ export const SignUp = () => {
     }
     try {
       setSignupStatus('LOADING');
-      signup(email, password);
+      await signup(email, password);
       setSignupStatus('SUCCESS');
       setFormState({
         email: '',

@@ -9,12 +9,20 @@ import React, {
 import { auth } from '../firebase';
 
 type TInitialContext = {
-  signup: (email: string, password: string) => void;
+  signup: (email: string, password: string) => Promise<any>;
+  login: (email: string, password: string) => Promise<any>;
   currentUser: any;
 };
 
 const initialContext: TInitialContext = {
-  signup: (email: string, password: string) => null,
+  signup: (email: string, password: string) =>
+    new Promise((resolve, reject) => {
+      return null;
+    }),
+  login: (email: string, password: string) =>
+    new Promise((resolve, reject) => {
+      return null;
+    }),
   currentUser: null,
 };
 
@@ -27,6 +35,9 @@ export const AuthContextProvider: FC<ReactNode> = ({ children }) => {
   const signup = (email: string, password: string) => {
     return auth.createUserWithEmailAndPassword(email, password);
   };
+  const login = (email: string, password: string) => {
+    return auth.signInWithEmailAndPassword(email, password);
+  };
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -36,7 +47,7 @@ export const AuthContextProvider: FC<ReactNode> = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  const shareThisData = { currentUser, signup };
+  const shareThisData = { currentUser, signup, login };
 
   return (
     <AuthContext.Provider value={shareThisData}>

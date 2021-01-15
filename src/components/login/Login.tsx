@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuthContext } from '../../context/authContext';
 
@@ -10,7 +10,7 @@ type signupStatus =
   | null;
 
 export const Login = () => {
-  const { signup } = useAuthContext();
+  const { login } = useAuthContext();
   const [signupStatus, setSignupStatus] = useState<signupStatus>(null);
   const [formState, setFormState] = useState({
     email: '',
@@ -23,7 +23,7 @@ export const Login = () => {
 
     try {
       setSignupStatus('LOADING');
-      signup(email, password);
+      await login(email, password);
       setSignupStatus('SUCCESS');
       setFormState({
         email: '',
