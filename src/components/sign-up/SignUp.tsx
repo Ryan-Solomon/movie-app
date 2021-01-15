@@ -7,16 +7,16 @@ export const SignUp = () => {
       <STitle>Sign Up</STitle>
       <SForm>
         <SFormSection>
-          <SLabel>Email</SLabel>
-          <SInput />
+          <SLabel htmlFor='email'>Email</SLabel>
+          <SInput id='email' />
         </SFormSection>
         <SFormSection>
-          <SLabel>Email</SLabel>
-          <SInput />
+          <SLabel htmlFor='password'>Password</SLabel>
+          <SInput id='password' />
         </SFormSection>
         <SFormSection>
-          <SLabel>Email</SLabel>
-          <SInput />
+          <SLabel htmlFor='confirm-password'>Confirm Password</SLabel>
+          <SInput id='confirm-password' />
         </SFormSection>
         <SButton type='submit'>Submit</SButton>
       </SForm>
@@ -72,7 +72,7 @@ const SButton = styled.button`
   font-size: 1.5rem;
   padding: 0.8rem;
   transition: all 0.2s ease;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
 
   &:hover {
     color: ${colors.primaryTeal};
