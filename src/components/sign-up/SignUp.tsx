@@ -18,7 +18,10 @@ export const SignUp = () => {
           <SLabel htmlFor='confirm-password'>Confirm Password</SLabel>
           <SInput id='confirm-password' />
         </SFormSection>
-        <SButton type='submit'>Submit</SButton>
+        <SBtnTextContainer>
+          <SButton type='submit'>Submit</SButton>
+          <SText>Login Here</SText>
+        </SBtnTextContainer>
       </SForm>
     </SContainer>
   );
@@ -39,10 +42,23 @@ const SContainer = styled.main`
   box-shadow: 2px 2px 10px #ffffff;
 `;
 
+const SBtnTextContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+`;
+
 const STitle = styled.h1`
   color: ${colors.primaryColorGrey};
   text-align: center;
   font-size: 2.5rem;
+`;
+
+const SText = styled.h3`
+  color: ${colors.primaryColorGrey};
+  margin-right: 1rem;
+  font-size: 1.5rem;
 `;
 
 const SFormSection = styled.div`
@@ -72,7 +88,6 @@ const SButton = styled.button`
   font-size: 1.5rem;
   padding: 0.8rem;
   transition: all 0.2s ease;
-  margin: 1rem 0;
 
   &:hover {
     color: ${colors.primaryTeal};
