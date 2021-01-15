@@ -22,13 +22,17 @@ const AuthContext = createContext(initialContext);
 
 export const AuthContextProvider: FC<ReactNode> = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<null | any>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const signup = (email: string, password: string) => {
     return auth.createUserWithEmailAndPassword(email, password);
   };
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => setCurrentUser(user));
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setCurrentUser(user);
+      setIsLoading(false);
+    });
     return () => unsubscribe();
   }, []);
 
@@ -36,7 +40,7 @@ export const AuthContextProvider: FC<ReactNode> = ({ children }) => {
 
   return (
     <AuthContext.Provider value={shareThisData}>
-      {children}
+      {!isLoading && children}
     </AuthContext.Provider>
   );
 };

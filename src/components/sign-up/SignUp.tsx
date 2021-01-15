@@ -17,7 +17,7 @@ export const SignUp = () => {
     confirmPassword: '',
   });
 
-  const handleFormSubmit = (e: FormEvent) => {
+  const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const { email, password, confirmPassword } = formState;
     if (password !== confirmPassword) {
@@ -30,6 +30,11 @@ export const SignUp = () => {
       setSignupStatus('LOADING');
       signup(email, password);
       setSignupStatus('SUCCESS');
+      setFormState({
+        email: '',
+        password: '',
+        confirmPassword: '',
+      });
     } catch (e) {
       setSignupStatus({ type: 'ERROR', message: e.message });
     }
@@ -50,11 +55,18 @@ export const SignUp = () => {
 
   return (
     <SContainer>
+      {signupStatus && typeof signupStatus === 'object' && (
+        <h3 style={{ color: 'red', marginBottom: '10px' }}>
+          {signupStatus.message}
+        </h3>
+      )}
+
       <STitle>Sign Up</STitle>
       <SForm onSubmit={handleFormSubmit}>
         <SFormSection>
           <SLabel htmlFor='email'>Email</SLabel>
           <SInput
+            type='email'
             onChange={(e) => handleInputChange(e, 'EMAIL')}
             value={formState.email}
             id='email'
@@ -63,6 +75,7 @@ export const SignUp = () => {
         <SFormSection>
           <SLabel htmlFor='password'>Password</SLabel>
           <SInput
+            type='password'
             onChange={(e) => handleInputChange(e, 'PASSWORD')}
             value={formState.password}
             id='password'
@@ -71,13 +84,16 @@ export const SignUp = () => {
         <SFormSection>
           <SLabel htmlFor='confirm-password'>Confirm Password</SLabel>
           <SInput
+            type='password'
             onChange={(e) => handleInputChange(e, 'CPASSWORD')}
             value={formState.confirmPassword}
             id='confirm-password'
           />
         </SFormSection>
         <SBtnTextContainer>
-          <SButton type='submit'>Submit</SButton>
+          <SButton disabled={signupStatus === 'LOADING'} type='submit'>
+            Submit
+          </SButton>
           <SText>Login Here</SText>
         </SBtnTextContainer>
       </SForm>
