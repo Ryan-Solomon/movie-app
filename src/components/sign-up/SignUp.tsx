@@ -32,24 +32,36 @@ const colors = {
 };
 
 const SContainer = styled.main`
-  background-color: ${colors.primaryColorGreyBlue};
+  width: 70vw;
+  margin: auto;
+  margin-top: 5rem;
+  padding: 3rem;
+  box-shadow: 2px 2px 10px #ffffff;
 `;
 
 const STitle = styled.h1`
   color: ${colors.primaryColorGrey};
+  text-align: center;
+  font-size: 2.5rem;
 `;
 
 const SFormSection = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 1rem 0;
 `;
 
 const SForm = styled.form``;
 
-const SInput = styled.input``;
+const SInput = styled.input`
+  padding: 0.5rem;
+  font-size: 1.8rem;
+  margin: 1rem 0;
+`;
 
 const SLabel = styled.label`
   color: ${colors.primaryColorGrey};
+  font-size: 1.8rem;
 `;
 
 const SButton = styled.button`
@@ -60,6 +72,7 @@ const SButton = styled.button`
   font-size: 1.5rem;
   padding: 0.8rem;
   transition: all 0.2s ease;
+  margin-bottom: 1rem;
 
   &:hover {
     color: ${colors.primaryTeal};
