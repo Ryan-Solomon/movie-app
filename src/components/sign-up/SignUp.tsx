@@ -53,10 +53,18 @@ const SLabel = styled.label`
 `;
 
 const SButton = styled.button`
-  background: none;
+  background-color: ${colors.primaryColorGreyBlue};
   border: 1px solid ${colors.primaryTeal};
   outline: none;
   color: ${colors.primaryColorGrey};
   font-size: 1.5rem;
   padding: 0.8rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: ${colors.primaryTeal};
+    border: 1px solid ${colors.primaryColorGrey};
+    cursor: pointer;
+    transform: scale(0.95);
+  }
 `;
