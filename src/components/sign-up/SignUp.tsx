@@ -3,11 +3,18 @@ import styled from 'styled-components';
 import { useAuthContext } from '../../context/authContext';
 
 export const SignUp = () => {
+  const { signup } = useAuthContext();
   const [formState, setFormState] = useState({
     email: '',
     password: '',
     confirmPassword: '',
   });
+
+  const handleFormSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    const { email, password } = formState;
+    signup(email, password);
+  };
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement>,
@@ -25,7 +32,7 @@ export const SignUp = () => {
   return (
     <SContainer>
       <STitle>Sign Up</STitle>
-      <SForm>
+      <SForm onSubmit={handleFormSubmit}>
         <SFormSection>
           <SLabel htmlFor='email'>Email</SLabel>
           <SInput

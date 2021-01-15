@@ -8,7 +8,15 @@ import React, {
 } from 'react';
 import { auth } from '../firebase';
 
-const initialContext = {};
+type TInitialContext = {
+  signup: (email: string, password: string) => void;
+  currentUser: any;
+};
+
+const initialContext: TInitialContext = {
+  signup: (email: string, password: string) => null,
+  currentUser: null,
+};
 
 const AuthContext = createContext(initialContext);
 
