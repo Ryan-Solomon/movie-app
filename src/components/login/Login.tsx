@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuthContext } from '../../context/authContext';
 
@@ -9,24 +9,18 @@ type signupStatus =
   | { type: 'ERROR'; message: string }
   | null;
 
-export const SignUp = () => {
+export const Login = () => {
   const { signup } = useAuthContext();
   const [signupStatus, setSignupStatus] = useState<signupStatus>(null);
   const [formState, setFormState] = useState({
     email: '',
     password: '',
-    confirmPassword: '',
   });
 
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const { email, password, confirmPassword } = formState;
-    if (password !== confirmPassword) {
-      return setSignupStatus({
-        type: 'ERROR',
-        message: "Passwords don't match",
-      });
-    }
+    const { email, password } = formState;
+
     try {
       setSignupStatus('LOADING');
       signup(email, password);
@@ -34,7 +28,6 @@ export const SignUp = () => {
       setFormState({
         email: '',
         password: '',
-        confirmPassword: '',
       });
     } catch (e) {
       setSignupStatus({ type: 'ERROR', message: e.message });
@@ -49,8 +42,6 @@ export const SignUp = () => {
       setFormState({ ...formState, email: e.target.value });
     } else if (whatInput === 'PASSWORD') {
       setFormState({ ...formState, password: e.target.value });
-    } else if (whatInput === 'CPASSWORD') {
-      setFormState({ ...formState, confirmPassword: e.target.value });
     }
   };
 
@@ -62,7 +53,7 @@ export const SignUp = () => {
         </h3>
       )}
 
-      <STitle>Sign Up</STitle>
+      <STitle>Login</STitle>
       <SForm onSubmit={handleFormSubmit}>
         <SFormSection>
           <SLabel htmlFor='email'>Email</SLabel>
@@ -82,22 +73,14 @@ export const SignUp = () => {
             id='password'
           />
         </SFormSection>
-        <SFormSection>
-          <SLabel htmlFor='confirm-password'>Confirm Password</SLabel>
-          <SInput
-            type='password'
-            onChange={(e) => handleInputChange(e, 'CPASSWORD')}
-            value={formState.confirmPassword}
-            id='confirm-password'
-          />
-        </SFormSection>
+
         <SBtnTextContainer>
           <SButton disabled={signupStatus === 'LOADING'} type='submit'>
             Submit
           </SButton>
-          <Link to='/login'>
+          <Link to='/signup'>
             <SRedirectButton>
-              <SText>Login Here</SText>
+              <SText>Signup Here</SText>
             </SRedirectButton>
           </Link>
         </SBtnTextContainer>

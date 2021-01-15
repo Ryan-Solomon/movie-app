@@ -15,6 +15,7 @@ import MovieDetailPage from './pages/MovieDetailPage';
 // PACKAGE IMPORTS
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { SignUp } from './components/sign-up/SignUp';
+import { Login } from './components/login/Login';
 
 function App() {
   return (
@@ -62,6 +63,9 @@ function App() {
             </Route>
             <Route exact path='/signup'>
               <SignUp />
+            </Route>
+            <Route exact path='/login'>
+              <Login />
             </Route>
             <Route path='*'>
               <ErrorPage />
