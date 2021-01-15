@@ -2,8 +2,15 @@ import React, { ChangeEvent, FormEvent, useState } from 'react';
 import styled from 'styled-components';
 import { useAuthContext } from '../../context/authContext';
 
+type signupStatus =
+  | 'LOADING'
+  | 'SUCCESS'
+  | { type: 'ERROR'; message: string }
+  | null;
+
 export const SignUp = () => {
   const { signup } = useAuthContext();
+  const [signupStatus, setSignupStatus] = useState<signupStatus>(null);
   const [formState, setFormState] = useState({
     email: '',
     password: '',
@@ -12,8 +19,20 @@ export const SignUp = () => {
 
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const { email, password } = formState;
-    signup(email, password);
+    const { email, password, confirmPassword } = formState;
+    if (password !== confirmPassword) {
+      return setSignupStatus({
+        type: 'ERROR',
+        message: "Passwords don't match",
+      });
+    }
+    try {
+      setSignupStatus('LOADING');
+      signup(email, password);
+      setSignupStatus('SUCCESS');
+    } catch (e) {
+      setSignupStatus({ type: 'ERROR', message: e.message });
+    }
   };
 
   const handleInputChange = (
