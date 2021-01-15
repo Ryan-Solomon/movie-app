@@ -1,23 +1,54 @@
-import React from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import styled from 'styled-components';
 import { useAuthContext } from '../../context/authContext';
 
 export const SignUp = () => {
+  const [formState, setFormState] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    whatInput: 'EMAIL' | 'PASSWORD' | 'CPASSWORD'
+  ) => {
+    if (whatInput === 'EMAIL') {
+      setFormState({ ...formState, email: e.target.value });
+    } else if (whatInput === 'PASSWORD') {
+      setFormState({ ...formState, password: e.target.value });
+    } else if (whatInput === 'CPASSWORD') {
+      setFormState({ ...formState, confirmPassword: e.target.value });
+    }
+  };
+
   return (
     <SContainer>
       <STitle>Sign Up</STitle>
       <SForm>
         <SFormSection>
           <SLabel htmlFor='email'>Email</SLabel>
-          <SInput id='email' />
+          <SInput
+            onChange={(e) => handleInputChange(e, 'EMAIL')}
+            value={formState.email}
+            id='email'
+          />
         </SFormSection>
         <SFormSection>
           <SLabel htmlFor='password'>Password</SLabel>
-          <SInput id='password' />
+          <SInput
+            onChange={(e) => handleInputChange(e, 'PASSWORD')}
+            value={formState.password}
+            id='password'
+          />
         </SFormSection>
         <SFormSection>
           <SLabel htmlFor='confirm-password'>Confirm Password</SLabel>
-          <SInput id='confirm-password' />
+          <SInput
+            onChange={(e) => handleInputChange(e, 'CPASSWORD')}
+            value={formState.confirmPassword}
+            id='confirm-password'
+          />
         </SFormSection>
         <SBtnTextContainer>
           <SButton type='submit'>Submit</SButton>
