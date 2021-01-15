@@ -13,7 +13,6 @@ const UpcomingMovieItem: FC<Props> = ({ movie }) => {
   const showMovieDetails = () => {
     history.push(`/moviedetail/${movie.id}`);
   };
-  // Test
 
   return (
     <div
