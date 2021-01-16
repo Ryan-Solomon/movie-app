@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
 
+// This is a comment
+
 type Props = {
   dadJoke: string;
 };
