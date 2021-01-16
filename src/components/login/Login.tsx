@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuthContext } from '../../context/authContext';
 
@@ -11,6 +11,7 @@ type signupStatus =
 
 export const Login = () => {
   const { login } = useAuthContext();
+  const history = useHistory();
   const [signupStatus, setSignupStatus] = useState<signupStatus>(null);
   const [formState, setFormState] = useState({
     email: '',
@@ -25,10 +26,7 @@ export const Login = () => {
       setSignupStatus('LOADING');
       await login(email, password);
       setSignupStatus('SUCCESS');
-      setFormState({
-        email: '',
-        password: '',
-      });
+      history.push('/');
     } catch (e) {
       setSignupStatus({ type: 'ERROR', message: e.message });
     }

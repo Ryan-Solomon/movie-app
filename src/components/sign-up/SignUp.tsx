@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuthContext } from '../../context/authContext';
 
@@ -11,6 +11,7 @@ type signupStatus =
 
 export const SignUp = () => {
   const { signup } = useAuthContext();
+  const history = useHistory();
   const [signupStatus, setSignupStatus] = useState<signupStatus>(null);
   const [formState, setFormState] = useState({
     email: '',
@@ -27,19 +28,23 @@ export const SignUp = () => {
         message: "Passwords don't match",
       });
     }
+    console.log(password);
+    if (password.length < 6) {
+      return setSignupStatus({
+        type: 'ERROR',
+        message: 'Password must be at least 6 characters',
+      });
+    }
+    setSignupStatus('LOADING');
     try {
-      setSignupStatus('LOADING');
       await signup(email, password);
       setSignupStatus('SUCCESS');
-      setFormState({
-        email: '',
-        password: '',
-        confirmPassword: '',
-      });
+      history.push('/');
     } catch (e) {
       setSignupStatus({ type: 'ERROR', message: e.message });
     }
   };
+  console.log(signupStatus);
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement>,
@@ -53,6 +58,8 @@ export const SignUp = () => {
       setFormState({ ...formState, confirmPassword: e.target.value });
     }
   };
+
+  if (signupStatus === 'SUCCESS') history.push('/');
 
   return (
     <SContainer>
