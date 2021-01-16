@@ -16,6 +16,7 @@ import MovieDetailPage from './pages/MovieDetailPage';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { SignUp } from './components/sign-up/SignUp';
 import { Login } from './components/login/Login';
+import { ResetPassword } from './components/reset-password/ResetPassword';
 
 function App() {
   return (
@@ -66,6 +67,9 @@ function App() {
             </Route>
             <Route exact path='/login'>
               <Login />
+            </Route>
+            <Route exact path='/reset-password'>
+              <ResetPassword />
             </Route>
             <Route path='*'>
               <ErrorPage />
