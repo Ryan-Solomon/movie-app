@@ -7,11 +7,8 @@ import { LoginButton } from '../login-button/LoginButton';
 import { LogoutButton } from '../logout-button/LogoutButton';
 
 export const UserIcon = () => {
-  const {
-    currentUser: { email },
-  } = useAuthContext();
-  const loginOrLogoutButton =
-    email.length > 0 ? <LogoutButton /> : <LoginButton />;
+  const { currentUser } = useAuthContext();
+  const loginOrLogoutButton = currentUser ? <LogoutButton /> : <LoginButton />;
 
   return (
     <SIconContainer>
@@ -19,7 +16,7 @@ export const UserIcon = () => {
         value={{
           style: {
             opacity: '1',
-            background: '#cacaca',
+            // background: '#cacaca',
             verticalAlign: 'center',
           },
         }}

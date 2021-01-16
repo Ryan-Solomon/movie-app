@@ -1,14 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // @ts-ignore
-import { FaUserCircle } from 'react-icons/fa';
 import './Nav.styles.css';
-import { useAuthContext } from '../../context/authContext';
 import { UserIcon } from '../user-icon/UserIcon';
 
 const Navbar = () => {
-  const { currentUser } = useAuthContext();
-  const { email } = currentUser;
   return (
     <nav className='navbar'>
       <div className='navbar__title'>
@@ -18,7 +14,7 @@ const Navbar = () => {
             Movie <span>Buff</span>
           </Link>
         </h1>
-        {email.length > 0 && <UserIcon />}
+        <UserIcon />
       </div>
     </nav>
   );
