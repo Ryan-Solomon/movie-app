@@ -18,6 +18,10 @@ export const Login = () => {
     password: '',
   });
 
+  const goToResetPassword = () => {
+    history.push('/reset-password');
+  };
+
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const { email, password } = formState;
@@ -83,6 +87,11 @@ export const Login = () => {
           </Link>
         </SBtnTextContainer>
       </SForm>
+      <SForgotPasswordButton onClick={goToResetPassword}>
+        <SForgotPasswordText>
+          Forgot your password? Click here.
+        </SForgotPasswordText>
+      </SForgotPasswordButton>
     </SContainer>
   );
 };
@@ -100,6 +109,23 @@ const SContainer = styled.main`
   margin-top: 5rem;
   padding: 3rem;
   box-shadow: 2px 2px 10px #ffffff;
+`;
+
+const SForgotPasswordButton = styled.button`
+  background: none;
+  border: none;
+  outline: none;
+`;
+
+const SForgotPasswordText = styled.h4`
+  color: white;
+  margin-top: 30px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.04);
+  }
 `;
 
 const SRedirectButton = styled.button`
