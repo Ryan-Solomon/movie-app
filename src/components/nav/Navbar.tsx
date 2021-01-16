@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import './Nav.styles.css';
 import { useAuthContext } from '../../context/authContext';
-import { IconContext } from 'react-icons';
+import { UserIcon } from '../user-icon/UserIcon';
 
 const Navbar = () => {
   const { currentUser } = useAuthContext();
@@ -18,17 +18,7 @@ const Navbar = () => {
             Movie <span>Buff</span>
           </Link>
         </h1>
-        <IconContext.Provider
-          value={{
-            style: {
-              opacity: '1',
-              background: '#cacaca',
-              verticalAlign: 'center',
-            },
-          }}
-        >
-          {email.length > 0 && <FaUserCircle size={34} />}
-        </IconContext.Provider>
+        {email.length > 0 && <UserIcon />}
       </div>
     </nav>
   );
