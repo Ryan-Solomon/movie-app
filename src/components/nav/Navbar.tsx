@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GiStrongMan } from 'react-icons/gi';
+// @ts-ignore
 import './Nav.styles.css';
+import { UserIcon } from '../user-icon/UserIcon';
 
 const Navbar = () => {
   return (
@@ -9,12 +10,11 @@ const Navbar = () => {
       <div className='navbar__title'>
         <h1>
           <Link to='/'>
+            {/* @ts-ignore */}
             Movie <span>Buff</span>
           </Link>
         </h1>
-        <div className='icon'>
-          <GiStrongMan size={34} />
-        </div>
+        <UserIcon />
       </div>
     </nav>
   );
