@@ -16,7 +16,7 @@ export const UserIcon = () => {
         value={{
           style: {
             opacity: '1',
-            // background: '#cacaca',
+            background: '#cacaca',
             verticalAlign: 'center',
           },
         }}
