@@ -11,6 +11,7 @@ import { auth } from '../firebase';
 type TInitialContext = {
   signup: (email: string, password: string) => Promise<any>;
   login: (email: string, password: string) => Promise<any>;
+  resetPassword: (email: string) => Promise<any>;
   logout: () => Promise<any>;
   currentUser: any;
 };
@@ -25,6 +26,10 @@ const initialContext: TInitialContext = {
       return null;
     }),
   logout: () =>
+    new Promise((resolve, reject) => {
+      return null;
+    }),
+  resetPassword: (email: string) =>
     new Promise((resolve, reject) => {
       return null;
     }),
@@ -44,6 +49,10 @@ export const AuthContextProvider: FC<ReactNode> = ({ children }) => {
     return auth.signInWithEmailAndPassword(email, password);
   };
 
+  const resetPassword = (email: string) => {
+    return auth.sendPasswordResetEmail(email);
+  };
+
   const logout = () => {
     return auth.signOut();
   };
@@ -56,7 +65,7 @@ export const AuthContextProvider: FC<ReactNode> = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  const shareThisData = { currentUser, signup, login, logout };
+  const shareThisData = { currentUser, signup, login, logout, resetPassword };
 
   return (
     <AuthContext.Provider value={shareThisData}>
