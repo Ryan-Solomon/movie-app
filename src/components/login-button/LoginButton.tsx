@@ -9,8 +9,19 @@ export const LoginButton = () => {
   );
 };
 
-const SButton = styled.button``;
+const SButton = styled.button`
+  background: #cacaca;
+  outline: none;
+  border: none;
+  height: 34px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 const SText = styled.h3`
-  color: white;
+  color: black;
+  margin: 0 12px;
 `;

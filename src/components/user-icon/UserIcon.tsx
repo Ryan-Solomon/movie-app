@@ -33,6 +33,7 @@ export const UserIcon = () => {
 
 const SButtonContainer = styled.div`
   display: none;
+  transition: all 0.2s ease;
 `;
 const SIconContainer = styled.div`
   display: flex;
